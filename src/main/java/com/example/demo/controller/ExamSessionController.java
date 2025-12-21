@@ -5,13 +5,13 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/students")
-@Tag(name = "Students")
-public class StudentController {
+@RequestMapping("/sessions")
+@Tag(name = "Exam Sessions")
+public class ExamSessionController {
 
     @GetMapping
-    @Operation(summary = "List students")
-    public String list() {
-        return "Students API";
+    @Operation(summary = "List sessions")
+    public String sessions() {
+        return "Sessions API";
     }
 }
