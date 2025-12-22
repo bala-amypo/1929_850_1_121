@@ -1,13 +1,13 @@
-package com.example.crude.controller;
+package com.example.demo.controller;
 
-import com.example.crude.entity.SeatingPlan;
-import com.example.crude.entity.ExamSession;
-import com.example.crude.entity.ExamRoom;
-import com.example.crude.entity.Student;
-import com.example.crude.Repository.SeatingPlanRepository;
-import com.example.crude.Repository.ExamSessionRepository;
-import com.example.crude.Repository.ExamRoomRepository;
-import com.example.crude.Repository.StudentRepository;
+import com.example.demo.entity.SeatingPlan;
+import com.example.demo.entity.ExamSession;
+import com.example.demo.entity.ExamRoom;
+import com.example.demo.entity.Student;
+import com.example.demo.Repository.SeatingPlanRepository;
+import com.example.demo.Repository.ExamSessionRepository;
+import com.example.demo.Repository.ExamRoomRepository;
+import com.example.demo.Repository.StudentRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;

@@ -2,9 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.AuthRequest;
 import com.example.demo.dto.AuthResponse;
-import com.example.crude.entity.User;
-import com.example.crude.Repository.UserRepository;
-import com.example.crude.util.JwtUtil;
+import com.example.demo.entity.User;
+import com.example.demo.Repository.UserRepository;
+import com.example.demo.util.JwtUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;

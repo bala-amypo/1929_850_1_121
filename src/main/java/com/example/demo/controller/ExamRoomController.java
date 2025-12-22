@@ -1,7 +1,7 @@
-package com.example.crude.controller;
+package com.example.demo.controller;
 
-import com.example.crude.entity.ExamRoom;
-import com.example.crude.Repository.ExamRoomRepository;
+import com.example.demo.entity.ExamRoom;
+import com.example.demo.Repository.ExamRoomRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;

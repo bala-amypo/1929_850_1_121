@@ -1,6 +1,6 @@
-package com.example.crude.controller;
+package com.example.demo.controller;
 
-import com.example.crude.entity.Student;
+import com.example.demo.entity.Student;
 import com.example.crude.Repository.StudentRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
