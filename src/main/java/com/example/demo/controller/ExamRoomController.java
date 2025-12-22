@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.ExamRoom;
-import com.example.demo.Repository.ExamRoomRepository;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
