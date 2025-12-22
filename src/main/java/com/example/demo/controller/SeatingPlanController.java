@@ -1,18 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.SeatingPlan;
-import com.example.demo.entity.ExamSession;
-import com.example.demo.entity.ExamRoom;
-import com.example.demo.entity.Student;
-import com.example.demo.Repository.SeatingPlanRepository;
-import com.example.demo.Repository.ExamSessionRepository;
-import com.example.demo.Repository.ExamRoomRepository;
-import com.example.demo.Repository.StudentRepository;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Collections;
