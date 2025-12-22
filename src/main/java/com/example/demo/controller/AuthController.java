@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     @PostMapping("/login")
-    @Operation(summary = "Login (dummy endpoint)")
-    public String login() {
-        return "Swagger Working";
-    }
-}
+        @Operation(summary = "Login (dummy endpoint)")
+            public String login() {
+                    return "Swagger Working";
+                        }
+                        }
+                        
