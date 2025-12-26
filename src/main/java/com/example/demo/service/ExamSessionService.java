@@ -5,12 +5,11 @@ import java.util.List;
 
 public interface ExamSessionService {
 
-    // already used by tests
-    ExamSession createSession(ExamSession session);
-    ExamSession getSession(Long id);
-    List<ExamSession> getAllSessions();
+    ExamSession save(ExamSession examSession);
 
-    // 🔹 ADD THESE (for controller compatibility)
-    ExamSession save(ExamSession session);
     ExamSession get(Long id);
+
+    List<ExamSession> getAll();
+
+    void delete(Long id);
 }

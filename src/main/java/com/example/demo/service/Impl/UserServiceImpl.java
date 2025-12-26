@@ -7,39 +7,37 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
+    private final UserRepository repository;
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository,
+    public UserServiceImpl(UserRepository repository,
                            BCryptPasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
+        this.repository = repository;
         this.passwordEncoder = passwordEncoder;
     }
 
     @Override
-    public User saveUser(User user) {
+    public User save(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        return repository.save(user);
     }
 
     @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
-
-    // ✅ MISSING METHOD — NOW IMPLEMENTED
-    @Override
-    public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public User findByEmail(String email) {
+        return repository.findByEmail(email);
     }
 
     @Override
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+    public List<User> findAll() {
+        return repository.findAll();
+    }
+
+    @Override
+    public void delete(Long id) {
+        repository.deleteById(id);
     }
 }
