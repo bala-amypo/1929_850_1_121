@@ -1,13 +1,16 @@
 package com.example.demo.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-/*
- * Dummy security config.
- * This class is kept ONLY to satisfy project structure.
- * No Spring Security dependency is used.
- */
 @Configuration
 public class SecurityConfig {
-    // Intentionally empty
+
+    // Bean for password encryption
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
 }

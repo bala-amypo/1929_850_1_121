@@ -1,14 +1,17 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Getter
-@Setter
+@Table(name = "student")
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Student {
 
     @Id
@@ -16,6 +19,9 @@ public class Student {
     private Long id;
 
     private String name;
+
     private String registerNumber;
+
+    @Column(name = "`year`") // Escaped reserved keyword
     private int year;
 }
