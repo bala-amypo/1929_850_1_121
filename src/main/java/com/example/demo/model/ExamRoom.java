@@ -5,23 +5,24 @@ import lombok.*;
 
 @Entity
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class ExamRoom {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
     private String roomNumber;
+
+    private int rows;
+    private int columns;
 
     private int capacity;
 
+    // REQUIRED by tests
     public void ensureCapacityMatches() {
-        if (capacity < 1) {
-            throw new IllegalArgumentException("Capacity must be at least 1");
-        }
+        this.capacity = rows * columns;
     }
 }

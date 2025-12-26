@@ -2,25 +2,25 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.Set;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class ExamSession {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String sessionName;
+    private String courseCode;
+    private String examTime;
+    private LocalDate examDate;
 
     @ManyToMany
-    private Set<Student> students;
-
-    public String getBody() {
-        return "ExamSession Body: " + sessionName;
-    }
+    private List<Student> students;
 }
