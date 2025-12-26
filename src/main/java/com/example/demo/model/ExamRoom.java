@@ -5,8 +5,7 @@ import lombok.*;
 
 @Entity
 @Table(name = "exam_room")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -16,9 +15,7 @@ public class ExamRoom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // 🔴 REQUIRED for findByRoomNumber()
-    @Column(unique = true, nullable = false)
-    private String roomNumber;
+    private int rows;
 
-    private int capacity;
+    private int columns;
 }

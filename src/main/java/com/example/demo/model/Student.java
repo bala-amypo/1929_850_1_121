@@ -5,8 +5,7 @@ import lombok.*;
 
 @Entity
 @Table(name = "student")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -16,11 +15,9 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // 🔴 REQUIRED for findByRollNumber()
-    @Column(unique = true, nullable = false)
     private String rollNumber;
 
     private String name;
 
-    private String department;
+    private int year;   // 🔴 REQUIRED BY TESTS
 }
