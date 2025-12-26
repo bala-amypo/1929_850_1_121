@@ -15,7 +15,6 @@ public class Student {
     private Long id;
 
     private String rollNumber;
-    private String name;
     private String department;
     private int year;
 }

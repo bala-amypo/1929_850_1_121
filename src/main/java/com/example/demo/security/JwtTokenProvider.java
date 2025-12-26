@@ -8,30 +8,31 @@ import java.util.Date;
 @Component
 public class JwtTokenProvider {
 
-    private final String secret = "secret-key";
-    private final long validityInMs = 3600000;
+    private final String secret = "secretkey";
+    private final long validity = 3600000;
 
-    // REQUIRED constructor
-    public JwtTokenProvider(String secret, int validity) {
-    }
+    public JwtTokenProvider() {}
 
-    public JwtTokenProvider() {
-    }
-
-    // REQUIRED by tests
     public String generateToken(Long id, String email, String role) {
         return Jwts.builder()
                 .setSubject(email)
-                .claim("role", role)
                 .claim("id", id)
+                .claim("role", role)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + validityInMs))
+                .setExpiration(new Date(System.currentTimeMillis() + validity))
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
     }
 
-    // Existing usage
     public String generateToken(String email) {
-        return generateToken(0L, email, "USER");
+        return generateToken(1L, email, "USER");
+    }
+
+    public String getRoleFromToken(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(secret)
+                .parseClaimsJws(token)
+                .getBody();
+        return claims.get("role", String.class);
     }
 }
