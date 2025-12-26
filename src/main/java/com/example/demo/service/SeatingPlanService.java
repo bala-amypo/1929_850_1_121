@@ -4,6 +4,6 @@ import com.example.demo.model.SeatingPlan;
 import java.util.List;
 
 public interface SeatingPlanService {
-    SeatingPlan save(SeatingPlan plan);
-    List<SeatingPlan> getAll();
+
+    List<SeatingPlan> getByRoom(Long roomId);
 }
