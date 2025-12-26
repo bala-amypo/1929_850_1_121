@@ -1,31 +1,37 @@
-package com.example.demo.model;
+package com.example.demo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import java.time.LocalDateTime;
+import jakarta.persistence.*;
+import java.time.LocalDate;
 
 @Entity
+@Table(name = "exam_sessions")
 public class ExamSession {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String subject;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    @Column(nullable = false)
+    private LocalDate examDate;
+
+    @Column(nullable = false)
+    private String sessionName;
+
+    // -----------------
+    // Constructors
+    // -----------------
 
     public ExamSession() {
     }
 
-    public ExamSession(Long id, String subject, LocalDateTime startTime, LocalDateTime endTime) {
-        this.id = id;
-        this.subject = subject;
-        this.startTime = startTime;
-        this.endTime = endTime;
+    public ExamSession(LocalDate examDate, String sessionName) {
+        this.examDate = examDate;
+        this.sessionName = sessionName;
     }
+
+    // -----------------
+    // Getters & Setters
+    // -----------------
 
     public Long getId() {
         return id;
@@ -35,27 +41,19 @@ public class ExamSession {
         this.id = id;
     }
 
-    public String getSubject() {
-        return subject;
+    public LocalDate getExamDate() {
+        return examDate;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setExamDate(LocalDate examDate) {
+        this.examDate = examDate;
     }
 
-    public LocalDateTime getStartTime() {
-        return startTime;
+    public String getSessionName() {
+        return sessionName;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public LocalDateTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
+    public void setSessionName(String sessionName) {
+        this.sessionName = sessionName;
     }
 }
