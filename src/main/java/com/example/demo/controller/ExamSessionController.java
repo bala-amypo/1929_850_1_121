@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/exam-sessions")
+@RequestMapping("/api/sessions")
 public class ExamSessionController {
 
     private final ExamSessionService service;
@@ -18,8 +18,8 @@ public class ExamSessionController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ExamSession>> getAllSessions() {
-        return ResponseEntity.ok(service.getAllSessions());
+    public ResponseEntity<List<ExamSession>> getAll() {
+        return ResponseEntity.ok(service.getAll());
     }
 
     @GetMapping("/{id}")
@@ -30,5 +30,11 @@ public class ExamSessionController {
     @PostMapping
     public ResponseEntity<ExamSession> create(@RequestBody ExamSession session) {
         return ResponseEntity.ok(service.save(session));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
