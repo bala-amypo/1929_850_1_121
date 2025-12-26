@@ -1,40 +1,29 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.ExamSession;
+import com.example.demo.entity.ExamSession;
 import com.example.demo.service.ExamSessionService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/sessions")
+@RequestMapping("/exam-sessions")
 public class ExamSessionController {
 
-    private final ExamSessionService service;
+    private final ExamSessionService examSessionService;
 
-    public ExamSessionController(ExamSessionService service) {
-        this.service = service;
+    // Constructor injection
+    public ExamSessionController(ExamSessionService examSessionService) {
+        this.examSessionService = examSessionService;
     }
 
     @GetMapping
-    public ResponseEntity<List<ExamSession>> getAll() {
-        return ResponseEntity.ok(service.getAll());
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<ExamSession> get(@PathVariable Long id) {
-        return ResponseEntity.ok(service.get(id));
+    public List<ExamSession> getAllExamSessions() {
+        return examSessionService.getAllExamSessions();
     }
 
     @PostMapping
-    public ResponseEntity<ExamSession> create(@RequestBody ExamSession session) {
-        return ResponseEntity.ok(service.save(session));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.delete(id);
-        return ResponseEntity.noContent().build();
+    public ExamSession createExamSession(@RequestBody ExamSession examSession) {
+        return examSessionService.createExamSession(examSession);
     }
 }
