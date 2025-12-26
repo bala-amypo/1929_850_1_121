@@ -1,15 +1,29 @@
 package com.example.demo.service;
 
 import com.example.demo.model.ExamSession;
+import com.example.demo.repository.ExamSessionRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public interface ExamSessionService {
+@Service
+public class ExamSessionService {
 
-    ExamSession createSession(ExamSession session);
+    private final ExamSessionRepository repo;
 
-    ExamSession getSession(long id);
+    public ExamSessionService(ExamSessionRepository repo) {
+        this.repo = repo;
+    }
 
-    // ✅ ADD THIS
-    List<ExamSession> getAllSessions();
+    public List<ExamSession> getAllSessions() {
+        return repo.findAll();
+    }
+
+    public ExamSession get(Long id) {
+        return repo.findById(id).orElse(null);
+    }
+
+    public ExamSession save(ExamSession session) {
+        return repo.save(session);
+    }
 }

@@ -4,13 +4,12 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class ExamSession {
 
     @Id
@@ -20,7 +19,4 @@ public class ExamSession {
     private String courseCode;
     private String examTime;
     private LocalDate examDate;
-
-    @ManyToMany
-    private List<Student> students;
 }
