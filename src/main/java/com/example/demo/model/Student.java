@@ -1,11 +1,8 @@
-package com.example.demo.model;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-
 @Entity
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Student {
 
     @Id
@@ -13,7 +10,9 @@ public class Student {
     private Long id;
 
     private String name;
-    private String email;
 
-    // getters and setters
+    private String registerNumber;
+
+    @Column(name = "`year`")
+    private int year;
 }

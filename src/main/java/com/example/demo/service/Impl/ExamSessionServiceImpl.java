@@ -1,12 +1,3 @@
-package com.example.demo.service.impl;
-
-import com.example.demo.model.ExamSession;
-import com.example.demo.repository.ExamSessionRepository;
-import com.example.demo.service.ExamSessionService;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-
 @Service
 public class ExamSessionServiceImpl implements ExamSessionService {
 
@@ -17,12 +8,12 @@ public class ExamSessionServiceImpl implements ExamSessionService {
     }
 
     @Override
-    public ExamSession saveExamSession(ExamSession examSession) {
-        return examSessionRepository.save(examSession);
+    public ExamSession save(ExamSession session) {
+        return examSessionRepository.save(session);
     }
 
     @Override
-    public List<ExamSession> getAllExamSessions() {
-        return examSessionRepository.findAll();
+    public ExamSession get(Long id) {
+        return examSessionRepository.findById(id).orElse(null);
     }
 }
