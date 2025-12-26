@@ -4,6 +4,7 @@ import com.example.demo.model.SeatingPlan;
 import java.util.List;
 
 public interface SeatingPlanService {
-
-    List<SeatingPlan> getByRoom(Long roomId);
+    SeatingPlan generatePlan(long sessionId);
+    SeatingPlan getPlan(long id);
+    List<SeatingPlan> getPlansBySession(long sessionId);
 }
