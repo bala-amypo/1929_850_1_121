@@ -1,9 +1,9 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.ExamSession;
+import com.example.demo.model.ExamSession;
 import java.util.List;
 
 public interface ExamSessionService {
+    ExamSession saveExamSession(ExamSession examSession);
     List<ExamSession> getAllExamSessions();
-    ExamSession createExamSession(ExamSession examSession);
 }
