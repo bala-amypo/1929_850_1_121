@@ -1,6 +1,5 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.dto.RegisterRequest;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
@@ -9,22 +8,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
+    private final UserRepository repository;
 
-    // ✅ MUST be single-arg constructor
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserServiceImpl(UserRepository repository) {
+        this.repository = repository;
     }
 
     @Override
-    public User register(RegisterRequest request) {
-        User user = User.builder()
-                .name(request.getName())
-                .email(request.getEmail())
-                .password(request.getPassword())
-                .role("USER")
-                .build();
+    public void testService() {
+        System.out.println("Test Service running");
+    }
 
-        return userRepository.save(user);
+    @Override
+    public User createUser(String username, String password, String role) {
+        User user = User.builder().username(username).password(password).role(role).build();
+        return repository.save(user);
     }
 }
