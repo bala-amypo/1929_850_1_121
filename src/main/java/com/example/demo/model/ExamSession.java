@@ -1,3 +1,12 @@
+package com.example.demo.model;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Data
 @Builder
@@ -10,7 +19,9 @@ public class ExamSession {
     private Long id;
 
     private String courseCode;
+
     private String examTime;
+
     private LocalDate examDate;
 
     @ManyToMany

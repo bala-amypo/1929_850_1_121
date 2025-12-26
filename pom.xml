@@ -21,7 +21,6 @@
 
     <properties>
         <java.version>17</java.version>
-        <lombok.version>1.18.34</lombok.version>
     </properties>
 
     <dependencies>
@@ -77,11 +76,11 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Lombok (ONLY ONCE) -->
+        <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
+            <version>1.18.30</version>
             <scope>provided</scope>
         </dependency>
 
@@ -120,7 +119,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Compiler + Lombok Annotation Processing -->
+            <!-- Lombok Annotation Processing (REQUIRED) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -132,7 +131,7 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>${lombok.version}</version>
+                            <version>1.18.30</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>

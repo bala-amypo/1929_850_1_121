@@ -1,3 +1,8 @@
+package com.example.demo.model;
+
+import jakarta.persistence.*;
+import lombok.*;
+
 @Entity
 @Data
 @Builder
@@ -13,6 +18,5 @@ public class Student {
 
     private String registerNumber;
 
-    @Column(name = "`year`")
     private int year;
 }
