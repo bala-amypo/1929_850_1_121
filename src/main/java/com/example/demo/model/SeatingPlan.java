@@ -1,49 +1,30 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "seating_plan")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class SeatingPlan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long roomId;
-    private Long studentId;
-    private Integer seatNumber;
+    @ManyToOne
+    private ExamSession examSession;
 
-    // getters and setters
-    public Long getId() {
-        return id;
-    }
+    @ManyToOne
+    private ExamRoom room;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Lob
+    private String arrangementJson;
 
-    public Long getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(Long roomId) {
-        this.roomId = roomId;
-    }
-
-    public Long getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
-    }
-
-    public Integer getSeatNumber() {
-        return seatNumber;
-    }
-
-    public void setSeatNumber(Integer seatNumber) {
-        this.seatNumber = seatNumber;
-    }
+    private LocalDateTime generatedAt;
 }
