@@ -22,11 +22,10 @@ public class ExamSessionServiceImpl implements ExamSessionService {
     }
 
     @Override
-    public ExamSession getSession(long id) {
+    public ExamSession getSession(Long id) {
         return repository.findById(id).orElse(null);
     }
 
-    // ✅ ADD THIS
     @Override
     public List<ExamSession> getAllSessions() {
         return repository.findAll();

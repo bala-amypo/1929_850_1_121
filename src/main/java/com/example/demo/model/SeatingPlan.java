@@ -7,9 +7,9 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class SeatingPlan {
 
     @Id
@@ -22,7 +22,7 @@ public class SeatingPlan {
     @ManyToOne
     private ExamRoom room;
 
-    @Lob
+    @Column(columnDefinition = "TEXT")
     private String arrangementJson;
 
     private LocalDateTime generatedAt;

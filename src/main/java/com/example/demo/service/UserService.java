@@ -1,10 +1,13 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.RegisterRequest;
 import com.example.demo.model.User;
 
-import java.util.Optional;
-
 public interface UserService {
+
+    User register(RegisterRequest request);
+
     User save(User user);
-    Optional<User> findByEmail(String email);
+
+    User findByEmail(String email);
 }
