@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
 import org.springframework.stereotype.Service;
+
 import com.example.demo.model.ExamRoom;
 import com.example.demo.repository.ExamRoomRepository;
 import com.example.demo.service.ExamRoomService;
@@ -16,12 +17,9 @@ public class ExamRoomServiceImpl implements ExamRoomService {
 
     @Override
     public ExamRoom createExamRoom(ExamRoom room) {
-
         if (room.getRows() <= 0 || room.getColumns() <= 0) {
-            throw new RuntimeException("Rows and columns must be greater than zero");
+            throw new RuntimeException("Invalid rows or columns");
         }
-
-        // capacity auto-calculated in entity
         return examRoomRepository.save(room);
     }
 
