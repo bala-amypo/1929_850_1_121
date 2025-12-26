@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "student")
 @Data
 @Builder
 @NoArgsConstructor
@@ -17,11 +16,11 @@ public class Student {
 
     private String name;
 
-    @Column(name = "roll_number")
-    private String rollNumber; // was missing, matches test
+    @Column(unique = true)
+    private String rollNumber;
 
-    private String department; // was missing
+    private String department;
 
-    @Column(name = "`year`")
+    @Column(name = "`year`") // Fix for H2 reserved keyword
     private int year;
 }

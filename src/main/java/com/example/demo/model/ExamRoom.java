@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "exam_room")
 @Data
 @Builder
 @NoArgsConstructor
@@ -15,14 +14,14 @@ public class ExamRoom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "room_number")
-    private String roomNumber; // matches test
+    @Column(unique = true)
+    private String roomNumber;
 
     private int capacity;
 
     public void ensureCapacityMatches() {
-        if (capacity < 0) {
-            throw new IllegalArgumentException("Capacity cannot be negative");
+        if (capacity < 1) {
+            throw new IllegalArgumentException("Capacity must be at least 1");
         }
     }
 }
