@@ -2,25 +2,33 @@ package com.example.demo.service.impl;
 
 import com.example.demo.model.ExamSession;
 import com.example.demo.repository.ExamSessionRepository;
-import com.example.demo.repository.StudentRepository;
 import com.example.demo.service.ExamSessionService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-@RequiredArgsConstructor
 public class ExamSessionServiceImpl implements ExamSessionService {
 
-    private final ExamSessionRepository examSessionRepository;
-    private final StudentRepository studentRepository;
+    private final ExamSessionRepository repository;
+
+    public ExamSessionServiceImpl(ExamSessionRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public ExamSession createSession(ExamSession session) {
-        return examSessionRepository.save(session);
+        return repository.save(session);
     }
 
     @Override
     public ExamSession getSession(long id) {
-        return examSessionRepository.findById(id).orElse(null);
+        return repository.findById(id).orElse(null);
+    }
+
+    // ✅ ADD THIS
+    @Override
+    public List<ExamSession> getAllSessions() {
+        return repository.findAll();
     }
 }

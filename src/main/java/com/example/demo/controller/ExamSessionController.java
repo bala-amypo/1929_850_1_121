@@ -2,18 +2,33 @@ package com.example.demo.controller;
 
 import com.example.demo.model.ExamSession;
 import com.example.demo.service.ExamSessionService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/sessions")
-@RequiredArgsConstructor
 public class ExamSessionController {
 
     private final ExamSessionService service;
 
+    public ExamSessionController(ExamSessionService service) {
+        this.service = service;
+    }
+
     @PostMapping
-    public ExamSession create(@RequestBody ExamSession session) {
-        return service.createSession(session);
+    public ResponseEntity<ExamSession> create(@RequestBody ExamSession session) {
+        return ResponseEntity.ok(service.createSession(session));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ExamSession> get(@PathVariable long id) {
+        return ResponseEntity.ok(service.getSession(id));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ExamSession>> list() {
+        return ResponseEntity.ok(service.getAllSessions());
     }
 }
