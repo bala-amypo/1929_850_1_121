@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
+@Table(name = "users") // ✅ FIX: avoid reserved keyword
 @Data
 @Builder
 @NoArgsConstructor
@@ -15,7 +16,11 @@ public class User {
     private Long id;
 
     private String name;
+
+    @Column(unique = true)
     private String email;
+
     private String password;
+
     private String role;
 }
