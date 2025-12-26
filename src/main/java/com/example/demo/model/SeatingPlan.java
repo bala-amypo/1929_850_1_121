@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 public class SeatingPlan {
@@ -10,16 +9,13 @@ public class SeatingPlan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private ExamSession examSession;
-
-    @ManyToOne
-    private ExamRoom room;
-
-    @Lob
-    private String arrangementJson;
-
-    private LocalDateTime generatedAt;
+    private String details;
 
     public SeatingPlan() {}
+    public SeatingPlan(String details) { this.details = details; }
+
+    public Long getId() { return id; }
+    public String getDetails() { return details; }
+
+    public void setDetails(String details) { this.details = details; }
 }

@@ -9,48 +9,20 @@ public class ExamRoom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
     private String roomNumber;
-
-    private Integer rows;
-    private Integer columns;
-    private Integer capacity;
+    private int capacity;
 
     public ExamRoom() {}
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getRoomNumber() {
-        return roomNumber;
-    }
-
-    public void setRoomNumber(String roomNumber) {
+    public ExamRoom(String roomNumber, int capacity) {
         this.roomNumber = roomNumber;
-    }
-
-    public Integer getRows() {
-        return rows;
-    }
-
-    public void setRows(Integer rows) {
-        this.rows = rows;
-    }
-
-    public Integer getColumns() {
-        return columns;
-    }
-
-    public void setColumns(Integer columns) {
-        this.columns = columns;
-    }
-
-    public Integer getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(Integer capacity) {
         this.capacity = capacity;
     }
+
+    public Long getId() { return id; }
+    public String getRoomNumber() { return roomNumber; }
+    public int getCapacity() { return capacity; }
+
+    public void setRoomNumber(String roomNumber) { this.roomNumber = roomNumber; }
+    public void setCapacity(int capacity) { this.capacity = capacity; }
 }
