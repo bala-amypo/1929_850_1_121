@@ -4,11 +4,11 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "users") // ✅ FIX: avoid reserved keyword
+@Table(name = "users")   // ✅ IMPORTANT FIX
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class User {
 
     @Id
@@ -17,7 +17,6 @@ public class User {
 
     private String name;
 
-    @Column(unique = true)
     private String email;
 
     private String password;

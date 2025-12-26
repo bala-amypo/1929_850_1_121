@@ -9,10 +9,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository repository;
+    private final UserRepository userRepository;
 
-    public UserServiceImpl(UserRepository repository) {
-        this.repository = repository;
+    // ✅ MUST be single-arg constructor
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -23,16 +24,7 @@ public class UserServiceImpl implements UserService {
                 .password(request.getPassword())
                 .role("USER")
                 .build();
-        return repository.save(user);
-    }
 
-    @Override
-    public User save(User user) {
-        return repository.save(user);
-    }
-
-    @Override
-    public User findByEmail(String email) {
-        return repository.findByEmail(email).orElse(null);
+        return userRepository.save(user);
     }
 }
