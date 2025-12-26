@@ -1,13 +1,14 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
 import lombok.*;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "students")
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Student {
 
     @Id
@@ -15,8 +16,5 @@ public class Student {
     private Long id;
 
     private String name;
-
-    private String registerNumber;
-
-    private int year;
+    private String email;
 }

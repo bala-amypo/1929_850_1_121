@@ -1,10 +1,10 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
 import lombok.*;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "users")   // ✅ IMPORTANT FIX
+@Table(name = "users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,11 +15,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    @Column(nullable = false, unique = true)
+    private String username;
 
-    private String email;
-
+    @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
     private String role;
 }
