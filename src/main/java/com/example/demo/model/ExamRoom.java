@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "exam_room")
+@Table(name = "exam_rooms")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,7 +15,10 @@ public class ExamRoom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int rows;
+    // 🔴 REQUIRED FIELD (THIS FIXES YOUR ERROR)
+    @Column(nullable = false, unique = true)
+    private String roomNumber;
 
+    private int rows;
     private int columns;
 }
