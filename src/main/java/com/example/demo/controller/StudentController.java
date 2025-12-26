@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Student;
 import com.example.demo.service.StudentService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,20 +10,24 @@ import java.util.List;
 @RequestMapping("/students")
 public class StudentController {
 
-    private final StudentService service;
+    private final StudentService studentService;
 
-    public StudentController(StudentService service) {
-        this.service = service;
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
     }
 
     @PostMapping
-    public ResponseEntity<Student> add(@RequestBody Student student) {
-        Student saved = service.addStudent(student);
-        return ResponseEntity.ok(saved);
+    public Student createStudent(@RequestBody Student student) {
+        return studentService.saveStudent(student);
     }
 
     @GetMapping
-    public ResponseEntity<List<Student>> list() {
-        return ResponseEntity.ok(service.getAllStudents());
+    public List<Student> getAllStudents() {
+        return studentService.getAllStudents();
+    }
+
+    @GetMapping("/{id}")
+    public Student getStudentById(@PathVariable Long id) {
+        return studentService.getStudentById(id);
     }
 }

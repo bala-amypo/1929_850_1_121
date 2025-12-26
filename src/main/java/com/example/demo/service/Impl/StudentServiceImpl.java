@@ -1,26 +1,29 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.model.Student;
-import com.example.demo.repository.StudentRepository;
 import com.example.demo.service.StudentService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
 
-    private final StudentRepository repository;
+    private final List<Student> students = new ArrayList<>();
 
     @Override
-    public Student addStudent(Student student) {
-        return repository.save(student);
+    public Student saveStudent(Student student) {
+        students.add(student);
+        return student;
     }
 
     @Override
     public List<Student> getAllStudents() {
-        return repository.findAll();
+        return students;
+    }
+
+    @Override
+    public Student getStudentById(Long id) {
+        return students.stream().filter(s -> s.getId().equals(id)).findFirst().orElse(null);
     }
 }

@@ -1,7 +1,10 @@
-package com.example.demo.entity;
+package com.example.demo.model;
 
-import jakarta.persistence.*;
-import java.util.Set;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import java.time.LocalDateTime;
 
 @Entity
 public class ExamSession {
@@ -10,31 +13,24 @@ public class ExamSession {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-
-    @ManyToMany
-    @JoinTable(
-        name = "exam_session_students",
-        joinColumns = @JoinColumn(name = "exam_session_id"),
-        inverseJoinColumns = @JoinColumn(name = "student_id")
-    )
-    private Set<Student> students;
+    private String subject;
+    private LocalDateTime sessionTime;
 
     // Constructors
     public ExamSession() {}
 
-    public ExamSession(String name, Set<Student> students) {
-        this.name = name;
-        this.students = students;
+    public ExamSession(String subject, LocalDateTime sessionTime) {
+        this.subject = subject;
+        this.sessionTime = sessionTime;
     }
 
-    // Getters & Setters
+    // Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public String getSubject() { return subject; }
+    public void setSubject(String subject) { this.subject = subject; }
 
-    public Set<Student> getStudents() { return students; }
-    public void setStudents(Set<Student> students) { this.students = students; }
+    public LocalDateTime getSessionTime() { return sessionTime; }
+    public void setSessionTime(LocalDateTime sessionTime) { this.sessionTime = sessionTime; }
 }
