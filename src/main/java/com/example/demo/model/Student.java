@@ -1,10 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "student")
@@ -20,8 +17,11 @@ public class Student {
 
     private String name;
 
-    private String registerNumber;
+    @Column(name = "roll_number")
+    private String rollNumber; // was missing, matches test
 
-    @Column(name = "`year`") // Escaped reserved keyword
+    private String department; // was missing
+
+    @Column(name = "`year`")
     private int year;
 }

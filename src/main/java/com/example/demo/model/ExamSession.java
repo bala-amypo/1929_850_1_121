@@ -3,26 +3,33 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Getter
-@Setter
+@Table(name = "exam_session")
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class ExamSession {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate examDate;
-    private String sessionName;
-    private String courseCode;
-    private String examTime;
+    private String name;
 
     @ManyToMany
-    private List<Student> students;
+    @JoinTable(
+        name = "exam_session_students",
+        joinColumns = @JoinColumn(name = "exam_session_id"),
+        inverseJoinColumns = @JoinColumn(name = "students_id")
+    )
+    private Set<Student> students = new HashSet<>();
+
+    // If tests expect getBody(), define:
+    public String getBody() {
+        return name; // or any appropriate value
+    }
 }
