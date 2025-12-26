@@ -1,33 +1,40 @@
-package com.example.demo.model;
+package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "exam_session")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class ExamSession {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String courseCode;
-
-    private String examTime;
+    private String name;
 
     @ManyToMany
     @JoinTable(
         name = "exam_session_students",
         joinColumns = @JoinColumn(name = "exam_session_id"),
-        inverseJoinColumns = @JoinColumn(name = "students_id")
+        inverseJoinColumns = @JoinColumn(name = "student_id")
     )
-    @Builder.Default
-    private Set<Student> students = new HashSet<>();
+    private Set<Student> students;
+
+    // Constructors
+    public ExamSession() {}
+
+    public ExamSession(String name, Set<Student> students) {
+        this.name = name;
+        this.students = students;
+    }
+
+    // Getters & Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public Set<Student> getStudents() { return students; }
+    public void setStudents(Set<Student> students) { this.students = students; }
 }
