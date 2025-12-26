@@ -16,6 +16,10 @@ public class ExamSessionServiceImpl implements ExamSessionService {
         this.repository = repository;
     }
 
+    // =========================
+    // Methods expected by TESTS
+    // =========================
+
     @Override
     public ExamSession createSession(ExamSession session) {
         return repository.save(session);
@@ -29,5 +33,19 @@ public class ExamSessionServiceImpl implements ExamSessionService {
     @Override
     public List<ExamSession> getAllSessions() {
         return repository.findAll();
+    }
+
+    // =========================
+    // Methods expected by CONTROLLER
+    // =========================
+
+    @Override
+    public ExamSession save(ExamSession session) {
+        return repository.save(session);
+    }
+
+    @Override
+    public ExamSession get(Long id) {
+        return repository.findById(id).orElse(null);
     }
 }
