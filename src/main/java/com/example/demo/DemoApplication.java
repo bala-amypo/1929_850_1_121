@@ -1,4 +1,3 @@
-
 package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
@@ -10,4 +9,3 @@ public class DemoApplication {
         SpringApplication.run(DemoApplication.class, args);
     }
 }
-
