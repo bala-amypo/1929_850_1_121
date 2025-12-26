@@ -1,10 +1,17 @@
-package com.example.demo.service;
+@Service
+public class ExamRoomService {
 
-import com.example.demo.model.ExamRoom;
+    private final ExamRoomRepository repo;
 
-public interface ExamRoomService {
+    public ExamRoomService(ExamRoomRepository repo) {
+        this.repo = repo;
+    }
 
-    ExamRoom createExamRoom(ExamRoom room);
+    public ExamRoom save(ExamRoom room) {
+        return repo.save(room);
+    }
 
-    ExamRoom getByRoomNumber(String roomNumber);
+    public ExamRoom getByRoomNumber(String roomNumber) {
+        return repo.findByRoomNumber(roomNumber);
+    }
 }
