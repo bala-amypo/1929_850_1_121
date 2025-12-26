@@ -8,18 +8,15 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
-
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-
     @Column(unique = true)
-    private String email;
+    private String rollNumber;
 
-    private String password;
-
-    private String role;
+    private String name;
+    private String department;
+    private Integer year;
 }

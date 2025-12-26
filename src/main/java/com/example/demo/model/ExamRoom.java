@@ -21,7 +21,7 @@ public class ExamRoom {
 
     public void ensureCapacityMatches() {
         if (rows != null && columns != null) {
-            this.capacity = rows * columns;
+            capacity = rows * columns;
         }
     }
 }
