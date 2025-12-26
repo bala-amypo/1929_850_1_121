@@ -1,37 +1,34 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "seating_plan")
 public class SeatingPlan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Long roomId;
     private Long studentId;
-    private Long examRoomId;
-    private Long examSessionId;
+    private Integer seatNumber;
 
-    public SeatingPlan() {
-    }
-
-    public SeatingPlan(Long id, Long studentId, Long examRoomId, Long examSessionId) {
-        this.id = id;
-        this.studentId = studentId;
-        this.examRoomId = examRoomId;
-        this.examSessionId = examSessionId;
-    }
-
+    // getters and setters
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(Long roomId) {
+        this.roomId = roomId;
     }
 
     public Long getStudentId() {
@@ -42,19 +39,11 @@ public class SeatingPlan {
         this.studentId = studentId;
     }
 
-    public Long getExamRoomId() {
-        return examRoomId;
+    public Integer getSeatNumber() {
+        return seatNumber;
     }
 
-    public void setExamRoomId(Long examRoomId) {
-        this.examRoomId = examRoomId;
-    }
-
-    public Long getExamSessionId() {
-        return examSessionId;
-    }
-
-    public void setExamSessionId(Long examSessionId) {
-        this.examSessionId = examSessionId;
+    public void setSeatNumber(Integer seatNumber) {
+        this.seatNumber = seatNumber;
     }
 }

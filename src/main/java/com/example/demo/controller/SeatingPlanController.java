@@ -1,52 +1,23 @@
-package com.example.demo.model;
+package com.example.demo.controller;
 
-import jakarta.persistence.*;
+import com.example.demo.model.SeatingPlan;
+import com.example.demo.service.SeatingPlanService;
+import org.springframework.web.bind.annotation.*;
 
-@Entity
-@Table(name = "seating_plan")
-public class SeatingPlan {
+import java.util.List;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@RestController
+@RequestMapping("/seating-plans")
+public class SeatingPlanController {
 
-    // ✅ REQUIRED because repository uses findByRoomId
-    private Long roomId;
+    private final SeatingPlanService seatingPlanService;
 
-    private Long studentId;
-    private Integer seatNumber;
-
-    // ---------- getters & setters ----------
-
-    public Long getId() {
-        return id;
+    public SeatingPlanController(SeatingPlanService seatingPlanService) {
+        this.seatingPlanService = seatingPlanService;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(Long roomId) {
-        this.roomId = roomId;
-    }
-
-    public Long getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
-    }
-
-    public Integer getSeatNumber() {
-        return seatNumber;
-    }
-
-    public void setSeatNumber(Integer seatNumber) {
-        this.seatNumber = seatNumber;
+    @GetMapping("/room/{roomId}")
+    public List<SeatingPlan> getByRoom(@PathVariable Long roomId) {
+        return seatingPlanService.getByRoom(roomId);
     }
 }
