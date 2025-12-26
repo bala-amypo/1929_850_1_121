@@ -4,16 +4,21 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Data
-@Builder
+@Table(name = "exam_room")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class ExamRoom {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int rows;
-    private int columns;
+    // 🔴 REQUIRED for findByRoomNumber()
+    @Column(unique = true, nullable = false)
+    private String roomNumber;
+
+    private int capacity;
 }
