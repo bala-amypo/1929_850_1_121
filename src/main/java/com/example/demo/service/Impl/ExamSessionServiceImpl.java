@@ -5,47 +5,23 @@ import com.example.demo.repository.ExamSessionRepository;
 import com.example.demo.service.ExamSessionService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class ExamSessionServiceImpl implements ExamSessionService {
 
-    private final ExamSessionRepository repository;
+    private final ExamSessionRepository examSessionRepository;
 
-    public ExamSessionServiceImpl(ExamSessionRepository repository) {
-        this.repository = repository;
+    // ✅ ONE argument only
+    public ExamSessionServiceImpl(ExamSessionRepository examSessionRepository) {
+        this.examSessionRepository = examSessionRepository;
     }
-
-    // =========================
-    // Methods expected by TESTS
-    // =========================
-
-    @Override
-    public ExamSession createSession(ExamSession session) {
-        return repository.save(session);
-    }
-
-    @Override
-    public ExamSession getSession(Long id) {
-        return repository.findById(id).orElse(null);
-    }
-
-    @Override
-    public List<ExamSession> getAllSessions() {
-        return repository.findAll();
-    }
-
-    // =========================
-    // Methods expected by CONTROLLER
-    // =========================
 
     @Override
     public ExamSession save(ExamSession session) {
-        return repository.save(session);
+        return examSessionRepository.save(session);
     }
 
     @Override
     public ExamSession get(Long id) {
-        return repository.findById(id).orElse(null);
+        return examSessionRepository.findById(id).orElse(null);
     }
 }
