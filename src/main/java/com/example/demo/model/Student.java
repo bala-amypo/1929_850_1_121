@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "student")   // IMPORTANT: must match FK reference
+@Table(name = "student")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,7 +16,11 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // 🔴 REQUIRED for findByRollNumber()
+    @Column(unique = true, nullable = false)
+    private String rollNumber;
+
     private String name;
 
-    private String registerNumber;
+    private String department;
 }
