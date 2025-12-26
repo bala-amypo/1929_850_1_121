@@ -1,49 +1,33 @@
-package com.example.demo.service;
+package com.example.demo.service.impl;
 
+import org.springframework.stereotype.Service;
 import com.example.demo.model.ExamRoom;
 import com.example.demo.repository.ExamRoomRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
+import com.example.demo.service.ExamRoomService;
 
 @Service
 public class ExamRoomServiceImpl implements ExamRoomService {
 
-    @Autowired
-    private ExamRoomRepository examRoomRepository;
+    private final ExamRoomRepository examRoomRepository;
+
+    public ExamRoomServiceImpl(ExamRoomRepository examRoomRepository) {
+        this.examRoomRepository = examRoomRepository;
+    }
 
     @Override
-    public ExamRoom saveRoom(ExamRoom room) {
+    public ExamRoom createExamRoom(ExamRoom room) {
+
+        if (room.getRows() <= 0 || room.getColumns() <= 0) {
+            throw new RuntimeException("Rows and columns must be greater than zero");
+        }
+
+        // capacity auto-calculated in entity
         return examRoomRepository.save(room);
     }
 
     @Override
-    public ExamRoom getRoomById(Long id) {
-        return examRoomRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public List<ExamRoom> getAllRooms() {
-        return examRoomRepository.findAll();
-    }
-
-    @Override
-    public ExamRoom updateRoom(Long id, ExamRoom room) {
-        ExamRoom existing = examRoomRepository.findById(id).orElse(null);
-        if (existing != null) {
-            existing.setRoomNumber(room.getRoomNumber());
-            existing.setRows(room.getRows());
-            existing.setColumns(room.getColumns());
-            existing.setCapacity(room.getCapacity());
-            return examRoomRepository.save(existing);
-        }
-        return null;
-    }
-
-    @Override
-    public void deleteRoom(Long id) {
-        examRoomRepository.deleteById(id);
+    public ExamRoom getByRoomNumber(String roomNumber) {
+        return examRoomRepository.findByRoomNumber(roomNumber)
+                .orElseThrow(() -> new RuntimeException("Room not found"));
     }
 }
-
