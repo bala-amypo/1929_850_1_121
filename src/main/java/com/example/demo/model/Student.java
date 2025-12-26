@@ -1,28 +1,22 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "students")
 public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true, nullable = false)
+    private String rollNumber;   // ✅ REQUIRED FIELD
+
     private String name;
-    private String registerNumber;
+    private String department;
 
-    public Student() {
-    }
-
-    public Student(Long id, String name, String registerNumber) {
-        this.id = id;
-        this.name = name;
-        this.registerNumber = registerNumber;
-    }
+    // 🔹 Getters & Setters
 
     public Long getId() {
         return id;
@@ -30,6 +24,14 @@ public class Student {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getRollNumber() {
+        return rollNumber;
+    }
+
+    public void setRollNumber(String rollNumber) {
+        this.rollNumber = rollNumber;
     }
 
     public String getName() {
@@ -40,11 +42,11 @@ public class Student {
         this.name = name;
     }
 
-    public String getRegisterNumber() {
-        return registerNumber;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setRegisterNumber(String registerNumber) {
-        this.registerNumber = registerNumber;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 }
