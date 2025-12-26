@@ -4,10 +4,12 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Data
-@Builder
+@Table(name = "student")   // IMPORTANT: must match FK reference
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Student {
 
     @Id
@@ -17,6 +19,4 @@ public class Student {
     private String name;
 
     private String registerNumber;
-
-    private int year;
 }
