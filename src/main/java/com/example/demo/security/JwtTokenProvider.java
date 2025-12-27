@@ -1,30 +1,28 @@
 package com.example.demo.security;
 
+import io.jsonwebtoken.*;
 import org.springframework.stereotype.Component;
+
+import java.util.Date;
 
 @Component
 public class JwtTokenProvider {
 
-    private String secret;
-    private int expiration;
+    private final String SECRET = "secretkey";
+    private final long EXPIRATION = 86400000;
 
-    // Required by Spring
-    public JwtTokenProvider() {
+    public String generateToken(String username) {
+        return Jwts.builder()
+                .setSubject(username)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION))
+                .signWith(SignatureAlgorithm.HS256, SECRET)
+                .compact();
     }
 
-    // Required by TEST
-    public JwtTokenProvider(String secret, int expiration) {
-        this.secret = secret;
-        this.expiration = expiration;
-    }
-
-    // Required by TEST
-    public String generateToken(Long id, String email, String role) {
-        return id + ":" + email + ":" + role;
-    }
-
-    // Required by TEST
-    public String getRoleFromToken(String token) {
-        return token.split(":")[2];
+    public String getUsername(String token) {
+        return Jwts.parser().setSigningKey(SECRET)
+                .parseClaimsJws(token)
+                .getBody().getSubject();
     }
 }
