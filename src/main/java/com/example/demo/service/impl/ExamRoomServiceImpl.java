@@ -18,20 +18,17 @@ public class ExamRoomServiceImpl implements ExamRoomService {
     }
 
     @Override
-    public ExamRoom addRoom(ExamRoom r) {
-
-        if (r.getRows() == null || r.getColumns() == null ||
-            r.getRows() <= 0 || r.getColumns() <= 0) {
-            throw new ApiException("Invalid room");
+    public ExamRoom addRoom(ExamRoom room) {
+        if (room.getRows() == null || room.getColumns() == null ||
+                room.getRows() <= 0 || room.getColumns() <= 0) {
+            throw new ApiException("Invalid room dimensions");
         }
 
-        repo.findByRoomNumber(r.getRoomNumber())
-                .ifPresent(x -> {
-                    throw new ApiException("Room exists");
-                });
+        repo.findByRoomNumber(room.getRoomNumber())
+                .ifPresent(r -> { throw new ApiException("Room exists"); });
 
-        r.ensureCapacityMatches();
-        return repo.save(r);
+        room.ensureCapacityMatches();
+        return repo.save(room);
     }
 
     @Override
