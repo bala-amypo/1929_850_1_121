@@ -1,10 +1,9 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.User;
 import com.example.demo.service.UserService;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
@@ -12,13 +11,18 @@ public class AuthController {
 
     private final UserService userService;
 
-    // ✅ Constructor Injection (MANDATORY)
+    @Autowired
     public AuthController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<String> test() {
-        return ResponseEntity.ok(userService.testService());
+    @PostMapping("/register")
+    public User registerUser(@RequestBody User user) {
+        return userService.saveUser(user);
+    }
+
+    @GetMapping("/user/{email}")
+    public User getUser(@PathVariable String email) {
+        return userService.findByEmail(email);
     }
 }

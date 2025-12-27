@@ -22,5 +22,5 @@ public class User {
 
     private String password;
 
-    private String role; // Role field for Spring Security
+    private String role; // for Spring Security
 }
