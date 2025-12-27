@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Student;
-import com.example.demo.service.impl.StudentServiceImpl;
+import com.example.demo.service.StudentService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,9 +10,9 @@ import java.util.List;
 @RequestMapping("/students")
 public class StudentController {
 
-    private final StudentServiceImpl service;
+    private final StudentService service;
 
-    public StudentController(StudentServiceImpl service) {
+    public StudentController(StudentService service) {
         this.service = service;
     }
 
