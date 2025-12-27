@@ -4,16 +4,18 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Data
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class ExamRoom {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int rows;
-    private int columns;
+    private String roomNumber; // ✅ REQUIRED
+
+    private Integer capacity;
 }
