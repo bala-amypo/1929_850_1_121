@@ -10,19 +10,19 @@ import java.util.List;
 @Service
 public class StudentServiceImpl implements StudentService {
 
-    private final StudentRepository repository;
+    private final StudentRepository studentRepository;
 
-    public StudentServiceImpl(StudentRepository repository) {
-        this.repository = repository;
+    public StudentServiceImpl(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
 
     @Override
-    public Student createStudent(Student student) {
-        return repository.save(student);
+    public Student save(Student student) {
+        return studentRepository.save(student);
     }
 
     @Override
-    public List<Student> getAllStudents() {
-        return repository.findAll();
+    public List<Student> findAll() {
+        return studentRepository.findAll();
     }
 }

@@ -1,28 +1,18 @@
 package com.example.demo.security;
 
-import io.jsonwebtoken.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import java.util.Date;
 
 @Component
 public class JwtTokenProvider {
 
-    private final String SECRET = "secretkey";
-    private final long EXPIRATION = 86400000;
+    private final String jwtSecret;
+    private final int jwtExpirationMs;
 
-    public String generateToken(String username) {
-        return Jwts.builder()
-                .setSubject(username)
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION))
-                .signWith(SignatureAlgorithm.HS256, SECRET)
-                .compact();
-    }
-
-    public String getUsername(String token) {
-        return Jwts.parser().setSigningKey(SECRET)
-                .parseClaimsJws(token)
-                .getBody().getSubject();
+    public JwtTokenProvider(
+            @Value("${jwt.secret}") String jwtSecret,
+            @Value("${jwt.expiration}") int jwtExpirationMs) {
+        this.jwtSecret = jwtSecret;
+        this.jwtExpirationMs = jwtExpirationMs;
     }
 }
