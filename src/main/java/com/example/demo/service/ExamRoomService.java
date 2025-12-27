@@ -1,12 +1,17 @@
 package com.example.demo.service;
 
 import com.example.demo.model.ExamRoom;
+
 import java.util.List;
+import java.util.Optional;
 
 public interface ExamRoomService {
 
-    ExamRoom save(ExamRoom room);
     List<ExamRoom> getAll();
-    ExamRoom getById(Long id);
+
+    Optional<ExamRoom> get(Long id);
+
+    ExamRoom save(ExamRoom room);
+
     void delete(Long id);
 }
