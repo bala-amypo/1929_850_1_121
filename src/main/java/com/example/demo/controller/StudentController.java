@@ -2,31 +2,31 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Student;
 import com.example.demo.service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("/students")
 public class StudentController {
 
-    private final StudentService studentService;
+    private final StudentService service;
 
-    @Autowired
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
+    public StudentController(StudentService service) {
+        this.service = service;
     }
 
-    // Create a new student
-    @PostMapping("/add")
-    public Student addStudent(@RequestBody Student student) {
-        return studentService.saveStudent(student);  // <-- use saveStudent()
+    @PostMapping
+    public ResponseEntity<Student> add(@RequestBody Student student) {
+        return ResponseEntity.ok(service.addStudent(student));
     }
 
-    // Get all students
-    @GetMapping("/all")
-    public List<Student> getAllStudents() {
-        return studentService.getAllStudents();
+    // 🔥 IMPORTANT FIX HERE
+    @GetMapping
+    public ResponseEntity<List<Student>> list() {
+        return ResponseEntity.ok(service.getAllStudents());
     }
 }

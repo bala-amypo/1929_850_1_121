@@ -2,29 +2,28 @@ package com.example.demo.controller;
 
 import com.example.demo.model.ExamSession;
 import com.example.demo.service.ExamSessionService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
-import java.util.List;
-
+@SecurityRequirement(name = "bearerAuth")
 @RestController
-@RequestMapping("/exam-sessions")
+@RequestMapping("/sessions")
 public class ExamSessionController {
 
-    private final ExamSessionService examSessionService;
+    private final ExamSessionService service;
 
-    @Autowired
-    public ExamSessionController(ExamSessionService examSessionService) {
-        this.examSessionService = examSessionService;
+    public ExamSessionController(ExamSessionService service) {
+        this.service = service;
     }
 
     @PostMapping
-    public ExamSession addSession(@RequestBody ExamSession session) {
-        return examSessionService.saveSession(session);
+    public ResponseEntity<ExamSession> create(@RequestBody ExamSession session) {
+        return ResponseEntity.ok(service.createSession(session));
     }
 
-    @GetMapping
-    public List<ExamSession> getAllSessions() {
-        return examSessionService.getAllSessions();
+    @GetMapping("/{id}")
+    public ResponseEntity<ExamSession> get(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getSession(id));
     }
 }
