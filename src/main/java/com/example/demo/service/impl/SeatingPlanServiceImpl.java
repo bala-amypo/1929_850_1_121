@@ -1,9 +1,10 @@
-package com.example.demo.service;
+package com.example.demo.service.impl;
 
 import com.example.demo.model.SeatingPlan;
 import com.example.demo.repository.SeatingPlanRepository;
 import com.example.demo.repository.ExamSessionRepository;
 import com.example.demo.repository.ExamRoomRepository;
+import com.example.demo.service.SeatingPlanService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,11 +26,12 @@ public class SeatingPlanServiceImpl implements SeatingPlanService {
 
     @Override
     public SeatingPlan generatePlan(long sessionId) {
-        // implement your plan generation logic here
+        // implement logic
         return new SeatingPlan();
     }
 
-    public List<SeatingPlan> findByExamSessionId(long sessionId) {
+    @Override
+    public List<SeatingPlan> getPlansBySession(Long sessionId) {
         return planRepo.findByExamSessionId(sessionId);
     }
 }

@@ -15,7 +15,7 @@ public class SeatingPlanController {
     }
 
     @GetMapping("/{id}")
-    public SeatingPlan get(@PathVariable long id) {
+    public SeatingPlan generatePlan(@PathVariable long id) {
         return planService.generatePlan(id);
     }
 }

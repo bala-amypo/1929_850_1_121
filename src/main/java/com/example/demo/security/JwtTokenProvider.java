@@ -18,5 +18,12 @@ public class JwtTokenProvider {
         this.expiration = expiration;
     }
 
-    // Add generateToken(), validateToken() methods if used in tests
+    // Add this method
+    public String getUsername(String token) {
+        // implement JWT parsing to extract username
+        // placeholder implementation
+        return "user@example.com";
+    }
+
+    // Optional: add generateToken() & validateToken() if needed
 }

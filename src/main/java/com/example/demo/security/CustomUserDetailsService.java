@@ -2,29 +2,26 @@ package com.example.demo.security;
 
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final UserRepository repository;
-
-    public CustomUserDetailsService(UserRepository repository) {
-        this.repository = repository;
-    }
+    @Autowired
+    private UserRepository repository;
 
     @Override
-    public UserDetails loadUserByUsername(String username)
-            throws UsernameNotFoundException {
-
-        User user = repository.findByUsername(username)
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // Fix repository method call
+        User user = repository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        return org.springframework.security.core.userdetails.User
-                .withUsername(user.getUsername())
+        // Create UserDetails for Spring Security
+        return User.builder()
+                .email(user.getEmail())
                 .password(user.getPassword())
-                .roles(user.getRole())
                 .build();
     }
 }
