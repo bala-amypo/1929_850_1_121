@@ -3,36 +3,35 @@ package com.example.demo.service.impl;
 import com.example.demo.model.ExamRoom;
 import com.example.demo.repository.ExamRoomRepository;
 import com.example.demo.service.ExamRoomService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ExamRoomServiceImpl implements ExamRoomService {
 
-    private final ExamRoomRepository repo;
+    private final ExamRoomRepository repository;
 
-    public ExamRoomServiceImpl(ExamRoomRepository repo) {
-        this.repo = repo;
+    @Override
+    public List<ExamRoom> getAll() {
+        return repository.findAll();
+    }
+
+    @Override
+    public Optional<ExamRoom> get(Long id) {
+        return repository.findById(id);
     }
 
     @Override
     public ExamRoom save(ExamRoom room) {
-        return repo.save(room);
-    }
-
-    @Override
-    public List<ExamRoom> getAll() {
-        return repo.findAll();
-    }
-
-    @Override
-    public ExamRoom getById(Long id) {
-        return repo.findById(id).orElse(null);
+        return repository.save(room);
     }
 
     @Override
     public void delete(Long id) {
-        repo.deleteById(id);
+        repository.deleteById(id);
     }
 }
