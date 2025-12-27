@@ -5,7 +5,6 @@ import java.util.List;
 
 public interface StudentService {
 
-    Student createStudent(Student student);
-
-    List<Student> getAllStudents();
+    Student save(Student student);
+    List<Student> findAll();
 }

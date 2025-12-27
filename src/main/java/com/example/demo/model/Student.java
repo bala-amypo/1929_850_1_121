@@ -3,10 +3,11 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Entity
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 public class Student {
 
     @Id
@@ -14,4 +15,5 @@ public class Student {
     private Long id;
 
     private String name;
+    private String rollNumber;
 }
