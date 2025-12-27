@@ -4,7 +4,7 @@ import com.example.demo.model.Student;
 import java.util.List;
 
 public interface StudentService {
-    Student saveStudent(Student student);
+    Student saveStudent(Student student);  // <-- keep this name
     List<Student> getAllStudents();
     Student getStudentByRollNumber(String rollNumber);
 }

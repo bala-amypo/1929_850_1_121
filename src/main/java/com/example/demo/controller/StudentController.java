@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Student;
 import com.example.demo.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,17 +13,20 @@ public class StudentController {
 
     private final StudentService studentService;
 
+    @Autowired
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
 
-    @PostMapping
-    public Student add(@RequestBody Student student) {
-        return studentService.addStudent(student); // ✅ FIXED
+    // Create a new student
+    @PostMapping("/add")
+    public Student addStudent(@RequestBody Student student) {
+        return studentService.saveStudent(student);  // <-- use saveStudent()
     }
 
-    @GetMapping
-    public List<Student> list() {
-        return studentService.getAllStudents(); // ✅ FIXED
+    // Get all students
+    @GetMapping("/all")
+    public List<Student> getAllStudents() {
+        return studentService.getAllStudents();
     }
 }
