@@ -1,28 +1,19 @@
-package com.example.demo.service.impl;
+package com.example.demo.service;
 
-import com.example.demo.model.ExamSession;
 import com.example.demo.repository.ExamSessionRepository;
-import com.example.demo.service.ExamSessionService;
+import com.example.demo.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class ExamSessionServiceImpl implements ExamSessionService {
+public class ExamSessionServiceImpl {
 
-    private final ExamSessionRepository repository;
+    private final ExamSessionRepository examSessionRepository;
+    private final StudentRepository studentRepository;
 
-    public ExamSessionServiceImpl(ExamSessionRepository repository) {
-        this.repository = repository;
+    public ExamSessionServiceImpl(ExamSessionRepository examSessionRepository, StudentRepository studentRepository) {
+        this.examSessionRepository = examSessionRepository;
+        this.studentRepository = studentRepository;
     }
 
-    @Override
-    public ExamSession saveExamSession(ExamSession examSession) {
-        return repository.save(examSession);
-    }
-
-    @Override
-    public List<ExamSession> getAllExamSessions() {
-        return repository.findAll();
-    }
+    // Add any methods used in tests
 }

@@ -1,8 +1,9 @@
-package com.example.demo.service.impl;
+package com.example.demo.service;
 
 import com.example.demo.model.SeatingPlan;
 import com.example.demo.repository.SeatingPlanRepository;
-import com.example.demo.service.SeatingPlanService;
+import com.example.demo.repository.ExamSessionRepository;
+import com.example.demo.repository.ExamRoomRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,25 +11,25 @@ import java.util.List;
 @Service
 public class SeatingPlanServiceImpl implements SeatingPlanService {
 
-    private final SeatingPlanRepository repository;
+    private final SeatingPlanRepository planRepo;
+    private final ExamSessionRepository examRepo;
+    private final ExamRoomRepository roomRepo;
 
-    public SeatingPlanServiceImpl(SeatingPlanRepository repository) {
-        this.repository = repository;
+    public SeatingPlanServiceImpl(SeatingPlanRepository planRepo,
+                                  ExamSessionRepository examRepo,
+                                  ExamRoomRepository roomRepo) {
+        this.planRepo = planRepo;
+        this.examRepo = examRepo;
+        this.roomRepo = roomRepo;
     }
 
     @Override
-    public SeatingPlan createPlan(SeatingPlan plan) {
-        return repository.save(plan);
+    public SeatingPlan generatePlan(long sessionId) {
+        // implement your plan generation logic here
+        return new SeatingPlan();
     }
 
-    @Override
-    public SeatingPlan getPlan(String courseCode) {
-        return repository.findByExamSession_CourseCode(courseCode)
-                .orElse(null);
-    }
-
-    @Override
-    public List<SeatingPlan> getPlansBySession(Long sessionId) {
-        return repository.findByExamSession_Id(sessionId);
+    public List<SeatingPlan> findByExamSessionId(long sessionId) {
+        return planRepo.findByExamSessionId(sessionId);
     }
 }

@@ -3,20 +3,19 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
-@Table(name = "users") // ✅ FIX: DO NOT use "user"
-@Getter
-@Setter
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Entity
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String username;
+    private String name;
+    private String email;
     private String password;
-    private String role;
 }
