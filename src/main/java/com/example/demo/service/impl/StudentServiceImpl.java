@@ -17,19 +17,16 @@ public class StudentServiceImpl implements StudentService {
         this.repo = repo;
     }
 
+    @Override
     public Student addStudent(Student s) {
-        if (s.getRollNumber() == null || s.getYear() == null)
-            throw new ApiException("Invalid student");
-
-        if (s.getYear() < 1 || s.getYear() > 5)
-            throw new ApiException("Invalid year");
-
         repo.findByRollNumber(s.getRollNumber())
-                .ifPresent(x -> { throw new ApiException("Student exists"); });
-
+                .ifPresent(x -> {
+                    throw new ApiException("Student exists");
+                });
         return repo.save(s);
     }
 
+    @Override
     public List<Student> getAllStudents() {
         return repo.findAll();
     }

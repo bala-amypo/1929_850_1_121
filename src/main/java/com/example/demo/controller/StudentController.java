@@ -18,11 +18,11 @@ public class StudentController {
 
     @PostMapping
     public Student add(@RequestBody Student student) {
-        return studentService.save(student);
+        return studentService.addStudent(student); // ✅ FIXED
     }
 
     @GetMapping
     public List<Student> list() {
-        return studentService.findAll();
+        return studentService.getAllStudents(); // ✅ FIXED
     }
 }

@@ -4,8 +4,10 @@ import com.example.demo.model.ExamRoom;
 import com.example.demo.service.ExamRoomService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/exam-rooms")
+@RequestMapping("/rooms")
 public class ExamRoomController {
 
     private final ExamRoomService examRoomService;
@@ -15,7 +17,12 @@ public class ExamRoomController {
     }
 
     @PostMapping
-    public ExamRoom add(@RequestBody ExamRoom examRoom) {
-        return examRoomService.save(examRoom);
+    public ExamRoom add(@RequestBody ExamRoom room) {
+        return examRoomService.addRoom(room); // ✅ FIXED
+    }
+
+    @GetMapping
+    public List<ExamRoom> list() {
+        return examRoomService.getAllRooms();
     }
 }
