@@ -14,6 +14,10 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    @Column(unique = true, nullable = false)
     private String rollNumber;
+
+    private String name;
+    private String department;
+    private Integer year;
 }
