@@ -1,37 +1,35 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
+@Table(name = "exam_sessions")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ExamSession {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
+    
+    private String courseCode;
+    private LocalDate examDate;
+    
+    @Column(name = "exam_session_time")
+    private String examTime;
 
-    private LocalDate examDate;  // must match repository method
-
-    // Optional: Other fields
-    private String sessionName;
-
-    public ExamSession() {}
-
-    public ExamSession(LocalDate examDate, String sessionName) {
-        this.examDate = examDate;
-        this.sessionName = sessionName;
-    }
-
-    // Getters & Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public LocalDate getExamDate() { return examDate; }
-    public void setExamDate(LocalDate examDate) { this.examDate = examDate; }
-
-    public String getSessionName() { return sessionName; }
-    public void setSessionName(String sessionName) { this.sessionName = sessionName; }
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+        name = "session_student_mapping",
+        joinColumns = @JoinColumn(name = "session_id"),
+        inverseJoinColumns = @JoinColumn(name = "student_id")
+    )
+    @JsonIgnoreProperties("examSessions")
+    private Set<Student> students;
 }
