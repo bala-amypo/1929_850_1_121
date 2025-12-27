@@ -3,11 +3,13 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Data
-@Builder
+@Entity
+@Table(name = "users") // ✅ FIX: DO NOT use "user"
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Builder
 public class User {
 
     @Id
