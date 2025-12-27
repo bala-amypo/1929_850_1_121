@@ -16,19 +16,19 @@ public class SeatingPlanServiceImpl implements SeatingPlanService {
         this.repository = repository;
     }
 
-    // ✅ THIS METHOD WAS MISSING — NOW FIXED
     @Override
     public SeatingPlan createPlan(SeatingPlan plan) {
         return repository.save(plan);
     }
 
     @Override
-    public SeatingPlan getPlan(String rollNumber) {
-        return repository.getPlan(rollNumber).orElse(null);
+    public SeatingPlan getPlan(String courseCode) {
+        return repository.findByExamSession_CourseCode(courseCode)
+                .orElse(null);
     }
 
     @Override
-    public List<SeatingPlan> getPlansBySession(String sessionId) {
-        return repository.getPlansBySession(sessionId);
+    public List<SeatingPlan> getPlansBySession(Long sessionId) {
+        return repository.findByExamSession_Id(sessionId);
     }
 }

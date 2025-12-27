@@ -5,9 +5,9 @@ import java.util.List;
 
 public interface SeatingPlanService {
 
-    SeatingPlan createPlan(SeatingPlan plan);   // ✅ REQUIRED
+    SeatingPlan createPlan(SeatingPlan plan);
 
-    SeatingPlan getPlan(String rollNumber);
+    SeatingPlan getPlan(String courseCode);
 
-    List<SeatingPlan> getPlansBySession(String sessionId);
+    List<SeatingPlan> getPlansBySession(Long sessionId);
 }

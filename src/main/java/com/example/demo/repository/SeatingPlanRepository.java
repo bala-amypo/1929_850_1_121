@@ -8,7 +8,9 @@ import java.util.Optional;
 
 public interface SeatingPlanRepository extends JpaRepository<SeatingPlan, Long> {
 
-    Optional<SeatingPlan> getPlan(String studentRoll);
+    // ✔ valid Spring Data method
+    Optional<SeatingPlan> findByExamSession_CourseCode(String courseCode);
 
-    List<SeatingPlan> getPlansBySession(String sessionId);
+    // ✔ valid Spring Data method
+    List<SeatingPlan> findByExamSession_Id(Long sessionId);
 }
