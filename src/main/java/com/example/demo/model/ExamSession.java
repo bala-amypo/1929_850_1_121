@@ -13,17 +13,17 @@ public class ExamSession {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate examDate;
+    private LocalDate examDate;  // must match repository method
 
-    // Constructors
     public ExamSession() {}
+
     public ExamSession(LocalDate examDate) {
         this.examDate = examDate;
     }
 
-    // Getter and Setter
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
+
     public LocalDate getExamDate() { return examDate; }
     public void setExamDate(LocalDate examDate) { this.examDate = examDate; }
 }
