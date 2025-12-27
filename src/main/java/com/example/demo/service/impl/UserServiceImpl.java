@@ -15,13 +15,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void testService() {
-        System.out.println("Test Service running");
+    public String testService() {
+        return "Test Service running";   // ✅ return String
     }
 
     @Override
     public User createUser(String username, String password, String role) {
-        User user = User.builder().username(username).password(password).role(role).build();
+        User user = User.builder()
+                .username(username)
+                .password(password)
+                .role(role)
+                .build();
+
         return repository.save(user);
     }
 }
