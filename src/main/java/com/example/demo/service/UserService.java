@@ -4,5 +4,6 @@ import com.example.demo.model.User;
 
 public interface UserService {
     User saveUser(User user);
-    User findByEmail(String email);
+    User findByEmail(String email); // <-- must be declared
+    // Add other method declarations as needed
 }
