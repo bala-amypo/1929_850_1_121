@@ -18,7 +18,10 @@ public class Student {
     private Long id;
 
     private String name;
+
     private String email;
+
+    private String rollNumber; // <-- Add this field
 
     @ManyToMany(mappedBy = "students")
     private Set<ExamSession> examSessions;
