@@ -1,6 +1,9 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import java.time.LocalDate;
 
 @Entity
@@ -10,18 +13,53 @@ public class ExamSession {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-
-    // Make sure this field exists
+    // Make sure the field name matches repository method
     private LocalDate examDate;
 
-    // getters and setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    // Optional: other fields
+    private String examName;
+    private String examRoom;
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    // Constructors
+    public ExamSession() {
+    }
 
-    public LocalDate getExamDate() { return examDate; }
-    public void setExamDate(LocalDate examDate) { this.examDate = examDate; }
+    public ExamSession(LocalDate examDate, String examName, String examRoom) {
+        this.examDate = examDate;
+        this.examName = examName;
+        this.examRoom = examRoom;
+    }
+
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDate getExamDate() {
+        return examDate;
+    }
+
+    public void setExamDate(LocalDate examDate) {
+        this.examDate = examDate;
+    }
+
+    public String getExamName() {
+        return examName;
+    }
+
+    public void setExamName(String examName) {
+        this.examName = examName;
+    }
+
+    public String getExamRoom() {
+        return examRoom;
+    }
+
+    public void setExamRoom(String examRoom) {
+        this.examRoom = examRoom;
+    }
 }
