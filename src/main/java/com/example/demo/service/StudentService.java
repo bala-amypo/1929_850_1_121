@@ -1,10 +1,12 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Student;
 import java.util.List;
 
+import com.example.demo.model.Student;
+
 public interface StudentService {
-    Student saveStudent(Student student);  // <-- keep this name
+
+    Student addStudent(Student student);
+
     List<Student> getAllStudents();
-    Student getStudentByRollNumber(String rollNumber);
 }
