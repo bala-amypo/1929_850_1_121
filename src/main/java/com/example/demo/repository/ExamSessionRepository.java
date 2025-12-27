@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface ExamSessionRepository extends JpaRepository<ExamSession, Long> {
 
-    // Repository method must match entity field name exactly (case-sensitive)
+    // ✅ The method name must match the entity field exactly (examDate)
     List<ExamSession> findByExamDate(LocalDate examDate);
 }
