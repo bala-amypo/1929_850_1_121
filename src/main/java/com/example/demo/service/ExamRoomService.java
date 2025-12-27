@@ -1,10 +1,12 @@
 package com.example.demo.service;
 
-import com.example.demo.model.ExamSession;
-
+import com.example.demo.model.ExamRoom;
 import java.util.List;
 
-public interface ExamSessionService {
-    List<ExamSession> getAllExamSessions();
-    ExamSession getExamSessionById(long id);
+public interface ExamRoomService {
+
+    ExamRoom save(ExamRoom room);
+    List<ExamRoom> getAll();
+    ExamRoom getById(Long id);
+    void delete(Long id);
 }
