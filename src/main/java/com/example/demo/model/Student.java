@@ -3,21 +3,23 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
+import java.util.Set;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "student")
 public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String rollNumber;
-
     private String name;
-    private String department;
-    private Integer year;
+    private String email;
+
+    @ManyToMany(mappedBy = "students")
+    private Set<ExamSession> examSessions;
 }

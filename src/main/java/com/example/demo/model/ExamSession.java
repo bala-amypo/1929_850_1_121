@@ -3,25 +3,27 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Set;
 
-@Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "exam_session")
 public class ExamSession {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String courseCode;
-    private LocalDate examDate;
-    private String examTime;
+    private String sessionName;
 
     @ManyToMany
-    private Set<Student> students = new HashSet<>();
+    @JoinTable(
+        name = "exam_session_students",
+        joinColumns = @JoinColumn(name = "exam_session_id"),
+        inverseJoinColumns = @JoinColumn(name = "students_id")
+    )
+    private Set<Student> students;
 }
