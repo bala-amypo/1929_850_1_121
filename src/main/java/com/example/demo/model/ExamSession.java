@@ -1,15 +1,17 @@
 package com.example.demo.model;
 
-import lombok.Builder;
-import lombok.Data;
-
-import java.time.LocalDateTime;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Data
-@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
 public class ExamSession {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
 }
