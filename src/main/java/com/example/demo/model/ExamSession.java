@@ -1,29 +1,27 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import java.time.LocalDate;
 
-import java.util.Set;
-
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-@Table(name = "exam_session")
 public class ExamSession {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String sessionName;
+    private String name;
 
-    @ManyToMany
-    @JoinTable(
-        name = "exam_session_students",
-        joinColumns = @JoinColumn(name = "exam_session_id"),
-        inverseJoinColumns = @JoinColumn(name = "students_id")
-    )
-    private Set<Student> students;
+    // Make sure this field exists
+    private LocalDate examDate;
+
+    // getters and setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public LocalDate getExamDate() { return examDate; }
+    public void setExamDate(LocalDate examDate) { this.examDate = examDate; }
 }
