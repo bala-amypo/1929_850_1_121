@@ -19,44 +19,20 @@ public class ExamRoomServiceImpl implements ExamRoomService {
 
     @Override
     public ExamRoom addRoom(ExamRoom room) {
-
-        // 1. Null check
-        if (room == null) {
-            throw new ApiException("Invalid room data");
+        if (room.getRows() == null || room.getColumns() == null ||
+                room.getRows() <= 0 || room.getColumns() <= 0) {
+            throw new ApiException("Invalid room dimensions");
         }
 
-        // 2. Mandatory fields check
-        if (room.getRoomNumber() == null ||
-            room.getRoomNumber().trim().isEmpty() ||
-            room.getRows() == null ||
-            room.getColumns() == null) {
+        repo.findByRoomNumber(room.getRoomNumber())
+                .ifPresent(r -> { throw new ApiException("Room exists"); });
 
-            throw new ApiException("Invalid room data");
-        }
-
-        // 3. Negative / zero validation (IMPORTANT FOR test37)
-        if (room.getRows() <= 0 || room.getColumns() <= 0) {
-            throw new ApiException("Invalid room size");
-        }
-
-        // 4. Duplicate room number check (IMPORTANT FOR test26)
-        if (repo.findByRoomNumber(room.getRoomNumber()).isPresent()) {
-            throw new ApiException("Room with number already exists");
-        }
-
-        // 5. Capacity calculation (IMPORTANT FOR test52)
         room.ensureCapacityMatches();
-
         return repo.save(room);
     }
 
     @Override
     public List<ExamRoom> getAllRooms() {
         return repo.findAll();
-    }
-
-    @Override
-    public List<ExamRoom> findRoomsByCapacity(int capacity) {
-        return repo.findByCapacityGreaterThanEqual(capacity);
     }
 }

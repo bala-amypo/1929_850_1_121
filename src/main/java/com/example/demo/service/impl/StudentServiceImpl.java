@@ -7,7 +7,6 @@ import com.example.demo.service.StudentService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -20,26 +19,14 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student addStudent(Student student) {
-
-        if (student == null ||
-            student.getRollNumber() == null ||
-            student.getName() == null ||
-            student.getDepartment() == null ||
-            student.getYear() == null) {
-            throw new ApiException("Student details are incomplete");
+        if (student.getRollNumber() == null || student.getYear() == null) {
+            throw new ApiException("Invalid student data");
         }
-
-        if (student.getYear() < 1 || student.getYear() > 4) {
+        if (student.getYear() < 1 || student.getYear() > 5) {
             throw new ApiException("Invalid year");
         }
-
-        Optional<Student> existing =
-                repo.findByRollNumber(student.getRollNumber());
-
-        if (existing.isPresent()) {
-            throw new ApiException("Roll number already exists");
-        }
-
+        repo.findByRollNumber(student.getRollNumber())
+                .ifPresent(s -> { throw new ApiException("Student exists"); });
         return repo.save(student);
     }
 
