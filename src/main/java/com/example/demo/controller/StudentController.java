@@ -6,7 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("/students")
 public class StudentController {
@@ -18,17 +20,12 @@ public class StudentController {
     }
 
     @PostMapping
-    public ResponseEntity<Student> add(@RequestBody Student s) {
-        return ResponseEntity.ok(service.addStudent(s));
+    public ResponseEntity<Student> add(@RequestBody Student student) {
+        return ResponseEntity.ok(service.addStudent(student));
     }
 
-    // ✅ Existing REST endpoint (keep)
+    // 🔥 IMPORTANT FIX HERE
     @GetMapping
-    public ResponseEntity<List<Student>> getAll() {
-        return ResponseEntity.ok(service.getAllStudents());
-    }
-
-    // ✅ REQUIRED by test suite
     public ResponseEntity<List<Student>> list() {
         return ResponseEntity.ok(service.getAllStudents());
     }

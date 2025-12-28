@@ -6,7 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("/rooms")
 public class ExamRoomController {
@@ -18,17 +20,12 @@ public class ExamRoomController {
     }
 
     @PostMapping
-    public ResponseEntity<ExamRoom> add(@RequestBody ExamRoom r) {
-        return ResponseEntity.ok(service.addRoom(r));
+    public ResponseEntity<ExamRoom> add(@RequestBody ExamRoom room) {
+        return ResponseEntity.ok(service.addRoom(room));
     }
 
-    // ✅ Existing endpoint (keep)
+    // 🔥 IMPORTANT FIX HERE
     @GetMapping
-    public ResponseEntity<List<ExamRoom>> getAll() {
-        return ResponseEntity.ok(service.getAllRooms());
-    }
-
-    // ✅ REQUIRED by test suite
     public ResponseEntity<List<ExamRoom>> list() {
         return ResponseEntity.ok(service.getAllRooms());
     }

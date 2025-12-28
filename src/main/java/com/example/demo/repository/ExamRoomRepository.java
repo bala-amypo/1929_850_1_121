@@ -1,18 +1,14 @@
 package com.example.demo.repository;
 
-import com.example.demo.model.ExamRoom;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.model.ExamRoom;
 @Repository
-public interface ExamRoomRepository extends JpaRepository<ExamRoom, Long> {
-
-    // REQUIRED BY TESTS
+public interface ExamRoomRepository extends JpaRepository<ExamRoom, Long>{
     Optional<ExamRoom> findByRoomNumber(String roomNumber);
-
-    // REQUIRED BY TESTS
-    List<ExamRoom> findByCapacityGreaterThanEqual(int capacity);
+    List<ExamRoom> findByCapacityGreaterThanEqual(Integer capacity);
 }

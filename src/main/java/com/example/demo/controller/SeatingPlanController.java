@@ -6,9 +6,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
+@SecurityRequirement(name = "bearerAuth")
 @RestController
-@RequestMapping("/seating-plans")
+@RequestMapping("/plans")
 public class SeatingPlanController {
 
     private final SeatingPlanService service;
@@ -22,18 +24,14 @@ public class SeatingPlanController {
         return ResponseEntity.ok(service.generatePlan(sessionId));
     }
 
-    @GetMapping("/{sessionId}")
-    public ResponseEntity<SeatingPlan> get(@PathVariable Long sessionId) {
-        return ResponseEntity.ok(service.getPlan(sessionId));
+    @GetMapping("/{id}")
+    public ResponseEntity<SeatingPlan> get(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getPlan(id));
     }
 
+    // 🔥 IMPORTANT FIX HERE
     @GetMapping("/session/{sessionId}")
-    public ResponseEntity<List<SeatingPlan>> getBySession(@PathVariable Long sessionId) {
-        return ResponseEntity.ok(service.getPlansBySession(sessionId));
-    }
-
-    // REQUIRED BY TEST SUITE
-    public ResponseEntity<List<SeatingPlan>> list(Long sessionId) {
+    public ResponseEntity<List<SeatingPlan>> list(@PathVariable Long sessionId) {
         return ResponseEntity.ok(service.getPlansBySession(sessionId));
     }
 }
