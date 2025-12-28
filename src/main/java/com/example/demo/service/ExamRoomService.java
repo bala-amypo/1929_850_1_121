@@ -1,13 +1,14 @@
-package com.example.demo;
+package com.example.demo.service;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.example.demo.model.ExamRoom;
 
-@SpringBootApplication
-public class DemoApplication {
+import java.util.List;
 
-	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
-	}
+public interface ExamRoomService {
 
+    ExamRoom addRoom(ExamRoom room);
+
+    List<ExamRoom> getAllRooms();
+
+    List<ExamRoom> findRoomsByCapacity(int capacity);
 }
